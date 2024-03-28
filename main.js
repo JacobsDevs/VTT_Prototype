@@ -1,3 +1,4 @@
+const { create } = require('domain')
 const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
@@ -12,5 +13,9 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
 	window = createWindow()
-	window.loadFile('indexalso.html')
+
+})
+
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') app.quit()
 })
